@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "/src/css/Skill.css";
 
 const Skill = () => {
@@ -33,7 +33,7 @@ const Skill = () => {
   // Fetch skill details when editing
   const fetchSkillDetails = async (skillId) => {
     try {
-      const response = await fetch(`https://skillsetzone-1.onrender.com/api/skills/${skillId}`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/skills/${skillId}`, {
         method: "GET",
         headers: {
           Authorization: `Basic ${authToken}`,
@@ -67,8 +67,8 @@ const Skill = () => {
   
     try {
       const url = editingSkillId
-        ? `https://skillsetzone-1.onrender.com/api/skills/update/${editingSkillId}`
-        : "https://skillsetzone-1.onrender.com/api/skills/create";
+        ? `${import.meta.env.VITE_BACKEND_URL}/api/skills/update/${editingSkillId}`
+        : `${import.meta.env.VITE_BACKEND_URL}/api/skills/create`;
   
       const response = await fetch(url, {
         method: editingSkillId ? "PUT" : "POST",

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "/src/css/Skill.css"; // Ensure CSS path is correct
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import defaultProfileImage from "/src/components/download.png"; // Default profile image
 import "/src/css/SearchResult.css";
+import "/src/css/Skill.css"; // Ensure CSS path is correct
 
 // Function to detect and convert URLs to clickable links
 const LinkifyText = ({ text }) => {
@@ -85,7 +85,7 @@ const SearchResults = () => {
     } else if (searchQuery) {
       setLoading(true);
       
-      const endpoint = `https://skillsetzone-1.onrender.com/api/skills/search?query=${encodeURIComponent(searchQuery)}`;
+      const endpoint = `${import.meta.env.VITE_BACKEND_URL}/api/skills/search?query=${encodeURIComponent(searchQuery)}`;
 
       let headers = {};
       

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import defaultProfileImage from "/src/components/download.png";
 import '/src/css/userProfile.css';
@@ -52,7 +52,7 @@ const UserProfile = () => {
     setLoading(true);
     try {
       // Fetch user profile and skills
-      const response = await fetch(`https://skillsetzone-1.onrender.com/api/users/profile/${username}`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/profile/${username}`, {
         method: "GET",
         headers: { Authorization: `Basic ${authToken}` },
       });
@@ -90,7 +90,7 @@ const UserProfile = () => {
 
   const fetchUserExperiences = async (email) => {
     try {
-      const response = await fetch(`https://skillsetzone-1.onrender.com/api/expr/user-email/${email}`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/expr/user-email/${email}`, {
         method: "GET",
         headers: { Authorization: `Basic ${authToken}` },
       });

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import '/src/css/Login.css';
 import { login } from '/src/services/AuthService.jsx';
-import { useNavigate, Link } from 'react-router-dom';
-import '/src/css/Login.css';  
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -18,6 +19,11 @@ const Login = () => {
     }
   }
 , []);
+
+  useEffect(()=>{
+   console.log(import.meta.env.VITE_BACKEND_URL);
+    
+  })
 
   const handleSubmit = async (e) => {
     localStorage.removeItem('auth');

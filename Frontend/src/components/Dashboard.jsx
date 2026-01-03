@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "/src/css/Dashboard.css"; // Ensure correct path
 import defaultProfileImage from "/src/components/download.png";
+import "/src/css/Dashboard.css"; // Ensure correct path
 
 // Function to detect and convert links in text
 const processTextWithLinks = (text, className = "link-highlight") => {
@@ -42,7 +42,7 @@ const Dashboard = () => {
   const fetchTopSkills = useCallback(async () => {
     try {
       // Using the public endpoint without authentication
-      const response = await fetch("https://skillsetzone-1.onrender.com/admin/skill/all");
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}admin/skill/all`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -57,7 +57,7 @@ const Dashboard = () => {
   const fetchSkills = useCallback(async () => {
     const headers = { Authorization: `Basic ${authToken}` };
     try {
-      const response = await fetch("https://skillsetzone-1.onrender.com/api/skills/all-skills", { method: "GET", headers });
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/skills/all-skills`, { method: "GET", headers });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -92,7 +92,7 @@ const Dashboard = () => {
   const toggleLike = async (skillId) => {
     const headers = { Authorization: `Basic ${authToken}` };
     try {
-      const response = await fetch(`https://skillsetzone-1.onrender.com/api/skills/like/${skillId}`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/skills/like/${skillId}`, {
         method: "PUT",
         headers,
       });

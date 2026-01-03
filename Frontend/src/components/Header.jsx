@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "/src/css/Header.css";
-import { Shield, User } from 'lucide-react'; // Import icons for user roles
 
 const Header = () => {
   const location = useLocation();
@@ -25,7 +24,7 @@ const Header = () => {
           // Get the auth token from localStorage
           const token = localStorage.getItem("auth");
           
-          const response = await fetch("https://skillsetzone-1.onrender.com/api/users/profile", {
+          const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/profile`, {
             headers: {
               Authorization: `Basic ${token}` // Assuming token-based authentication
             }
